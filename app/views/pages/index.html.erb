@@ -1,0 +1,17 @@
+<div id='player-container'></div>
+
+<%= javascript_tag do %>
+  $(function() {
+    function createPlayer() {
+      var source = new asciinema.HttpArraySource("recording.json", 1);
+      var snapshot = []
+      var movie = new asciinema.Movie(180, 43, source, snapshot, 9);
+
+      React.renderComponent(
+        asciinema.Player({ autoPlay: true, movie: movie }),
+        $('#player-container')[0]
+      );
+    }
+    createPlayer();
+  });
+<% end %>
